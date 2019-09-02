@@ -95,10 +95,10 @@ If you use this code please cite:
   title = {{DeepRemaster: Temporal Source-Reference Attention Networks for Comprehensive Video Enhancement}},
   journal = "ACM Transactions on Graphics (Proc. of SIGGRAPH ASIA)",
   year = 2019,
-  volume = ,
-  number = ,
-  pages = ,
-  articleno = ,
+  volume = 38,
+  number = 6,
+  pages = 1--13,
+  articleno = 176,
 }
 ```
 
