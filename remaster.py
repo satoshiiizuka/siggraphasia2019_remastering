@@ -149,7 +149,7 @@ with torch.no_grad():
                out = Image.fromarray( np.uint8( utils.convertLAB2RGB( out )*255 ) )
                out.save( outputdir_out+'%07d.png'%(index) )
             else:
-               save_image( input.detach()[b,:,i], outputdir_out+'%07d.png'%(index), nrow=1 )
+               save_image( output_l.detach()[0,:,i], outputdir_out+'%07d.png'%(index), nrow=1 )
       # Perform colorization
       else:
          if opt.reference_dir=='none':
