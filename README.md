@@ -31,7 +31,7 @@ See our [project page](http://iizuka.cs.tsukuba.ac.jp/projects/remastering/) for
 
   Satoshi Iizuka, University of Tsukuba
   iizuka@cs.tsukuba.ac.jp, http://iizuka.cs.tsukuba.ac.jp/index_eng.html
-  
+
   Edgar Simo-Serra, Waseda University
   ess@waseda.jp, https://esslab.jp/~ess/
 ```
@@ -46,6 +46,17 @@ See our [project page](http://iizuka.cs.tsukuba.ac.jp/projects/remastering/) for
 - [tqdm](https://github.com/tqdm/tqdm)
 
 For information on how to install PyTorch, please refer to the [PyTorch website](https://pytorch.org/). FFmpeg should be installed with libx264 support, which can be installed in Anaconda by using <code>conda install x264 ffmpeg -c conda-forge</code>.
+
+### Simple installation process
+- Create a python virtual environment and install the python packages:
+  ```bash
+  pip install -r requirements.txt
+  ```
+- Install FFmpeg
+  ```
+  brew install ffmpeg # for MacOS
+  ```
+
 
 ## Usage
 
@@ -85,12 +96,6 @@ To prepare reference color images for your own video, it is recommended to first
 - We recommend using GPU with 4GB+ memory for fast computation.
 - Provided model and sample code are under a non-commercial creative commons license.
 
-## Dataset
-
-The list of video URLs used for training the model is available [here](http://iizuka.cs.tsukuba.ac.jp/projects/remastering/data/video_urls.zip) (unfortunately several links are no longer available).
-
-The noise data used for simulating old film degradation is available [here (898MB)](http://iizuka.cs.tsukuba.ac.jp/projects/remastering/data/noise_data.zip).
-
 ## Citing
 
 If you use this code please cite:
@@ -107,7 +112,3 @@ If you use this code please cite:
   articleno = 176,
 }
 ```
-
-
-
-
