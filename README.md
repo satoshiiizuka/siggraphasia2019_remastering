@@ -6,6 +6,13 @@
 
 ## Overview
 
+![GitHub](https://img.shields.io/github/license/Ndagistanley/siggraphasia2019_remastering)
+![Requires.io](https://img.shields.io/requires/github/NdagiStanley/siggraphasia2019_remastering)
+
+### Git branches
+- `master` is similar to the original repo from which I forked
+- `complete` has the results of the project
+
 This code provides an implementation of the research paper:
 
 ```
@@ -84,7 +91,13 @@ Other options:
 For example:
 
 ```
-python remaster.py --input example/a-bomb_blast_effects_part.mp4 --reference_dir example/references --gpu
+python remaster.py --input example/a-bomb_blast_effects_part.mp4 --reference_dir example/references
+```
+
+### The Docker way
+```
+docker build -t remastering .
+docker run remastering python remaster.py --input example/a-bomb_blast_effects_part.mp4 --reference_dir example/references/
 ```
 
 ### Preparing Reference Images
