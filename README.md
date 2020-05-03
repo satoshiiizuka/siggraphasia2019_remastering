@@ -38,12 +38,13 @@ See our [project page](http://iizuka.cs.tsukuba.ac.jp/projects/remastering/) for
 
 
 ## Dependencies
-
+#### Python dependencies
 - [PyTorch (0.4.1+)](https://pytorch.org/) [torchvision](https://pytorch.org/docs/master/torchvision/)
-- [FFmpeg (requires to be configured with --enable-libx264)](https://ffmpeg.org/)
 - [opencv (3.4.1+)](https://opencv.org/)
 - [scikit-image](https://scikit-image.org/)
 - [tqdm](https://github.com/tqdm/tqdm)
+#### System dependency
+- [FFmpeg (requires to be configured with --enable-libx264)](https://ffmpeg.org/)
 
 For information on how to install PyTorch, please refer to the [PyTorch website](https://pytorch.org/). FFmpeg should be installed with libx264 support, which can be installed in Anaconda by using <code>conda install x264 ffmpeg -c conda-forge</code>.
 
