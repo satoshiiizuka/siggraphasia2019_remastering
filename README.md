@@ -85,6 +85,11 @@ To prepare reference color images for your own video, it is recommended to first
 - We recommend using GPU with 4GB+ memory for fast computation.
 - Provided model and sample code are under a non-commercial creative commons license.
 
+## Dataset
+
+The list of video URLs used for training the model is available [here](http://iizuka.cs.tsukuba.ac.jp/projects/remastering/data/video_urls.zip) (unfortunately several links are no longer available).
+
+
 ## Citing
 
 If you use this code please cite:
