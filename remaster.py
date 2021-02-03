@@ -178,9 +178,9 @@ with torch.no_grad():
    
    # Save result videos
    outfile = opt.input.split('/')[-1].split('.')[0]
-   cmd = 'ffmpeg -y -r %d -i %s%%07d.png -vcodec libx264 -pix_fmt yuv420p -r %d %s_in.mp4' % (fps, outputdir_in, fps, outfile )
+   cmd = 'ffmpeg -y -start_number %d -r %d -i %s%%07d.png -vcodec libx264 -pix_fmt yuv420p -r %d %s_in.mp4' % (opt.frame_start, fps, outputdir_in, fps, outfile )
    subprocess.call( cmd, shell=True )
-   cmd = 'ffmpeg -y -r %d -i %s%%07d.png -vcodec libx264 -pix_fmt yuv420p -r %d %s_out.mp4' % (fps, outputdir_out, fps, outfile )
+   cmd = 'ffmpeg -y -start_number %d -r %d -i %s%%07d.png -vcodec libx264 -pix_fmt yuv420p -r %d %s_out.mp4' % (opt.frame_start, fps, outputdir_out, fps, outfile )
    subprocess.call( cmd, shell=True )
    cmd = 'ffmpeg -y -i %s_in.mp4 -vf "[in] pad=2.01*iw:ih [left];movie=%s_out.mp4[right];[left][right] overlay=main_w/2:0,scale=2*iw/2:2*ih/2[out]" %s_comp.mp4' % ( outfile, outfile, outfile )
    subprocess.call( cmd, shell=True )
