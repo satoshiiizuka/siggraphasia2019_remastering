@@ -21,5 +21,5 @@ if [ "$CHECKSUM" != "$FILEMD5" ]; then
   echo "Integrity check failed. File is corrupt!"
   echo "Try running this script again and if it fails remove 'models/$FILENAME' before trying again."
   exit 1
-fi 
+fi
 echo -e "Download finished successfully!"

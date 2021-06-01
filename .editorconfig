@@ -1,0 +1,26 @@
+# EditorConfig is awesome: https://EditorConfig.org
+# EditorConfig helps maintain consistent coding styles for multiple developers
+# working on the same project across various editors and IDEs
+# See how to download a plugin for your editor/ IDE: https://editorconfig.org/#download
+
+# Reference: https://github.com/NdagiStanley/dotfiles/blob/master/code/.editorconfig
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+# Trailing whitespaces trimmed
+# Set default character encoding (just in case)
+# Set default indent style
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+charset = utf-8
+indent_style = space
+indent_size = 2
+
+# Matches multiple files with brace expansion notation
+# 4 space indentation
+[*.{py,sh}]
+indent_size = 4

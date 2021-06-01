@@ -95,7 +95,7 @@ fps = cap.get(cv2.CAP_PROP_FPS)
 pbar = tqdm(total=nframes)
 block = 5
 
-# Process 
+# Process
 with torch.no_grad():
    it = 0
    while True:
@@ -132,7 +132,7 @@ with torch.no_grad():
          input = frame_l if i==0 else torch.cat( (input, frame_l), 2 )
          if nchannels==3 and opt.disable_colorization:
             gtC = frame_ab if i==0 else torch.cat( (gtC, frame_ab), 2 )
-      
+
       input = input.to( device )
 
       # Perform restoration
@@ -158,7 +158,7 @@ with torch.no_grad():
             output_ab = modelC( output_l, refimgs )
          output_l = output_l.detach().cpu()
          output_ab = output_ab.detach().cpu()
-         
+
          # Save output frames of restoration with colorization
          for i in range( proc_g ):
             index = frame_pos + i
@@ -170,7 +170,7 @@ with torch.no_grad():
 
       it = it + 1
       pbar.update(proc_g)
-   
+
    # Save result videos
    outfile = opt.input.split('/')[-1].split('.')[0]
    cmd = 'ffmpeg -y -r %d -i %s%%07d.png -vcodec libx264 -pix_fmt yuv420p -r %d %s_in.mp4' % (fps, outputdir_in, fps, outfile )

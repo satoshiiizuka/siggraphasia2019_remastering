@@ -6,6 +6,13 @@
 
 ## Overview
 
+![GitHub](https://img.shields.io/github/license/Ndagistanley/siggraphasia2019_remastering)
+![Requires.io](https://img.shields.io/requires/github/NdagiStanley/siggraphasia2019_remastering)
+
+### Git branches
+- `master` is similar to the original repo from which I forked
+- `complete` has the results of the project
+
 This code provides an implementation of the research paper:
 
 ```
@@ -31,21 +38,33 @@ See our [project page](http://iizuka.cs.tsukuba.ac.jp/projects/remastering/) for
 
   Satoshi Iizuka, University of Tsukuba
   iizuka@cs.tsukuba.ac.jp, http://iizuka.cs.tsukuba.ac.jp/index_eng.html
-  
+
   Edgar Simo-Serra, Waseda University
   ess@waseda.jp, https://esslab.jp/~ess/
 ```
 
 
 ## Dependencies
-
+#### Python dependencies
 - [PyTorch (0.4.1+)](https://pytorch.org/) [torchvision](https://pytorch.org/docs/master/torchvision/)
-- [FFmpeg (requires to be configured with --enable-libx264)](https://ffmpeg.org/)
 - [opencv (3.4.1+)](https://opencv.org/)
 - [scikit-image](https://scikit-image.org/)
 - [tqdm](https://github.com/tqdm/tqdm)
+#### System dependency
+- [FFmpeg (requires to be configured with --enable-libx264)](https://ffmpeg.org/)
 
 For information on how to install PyTorch, please refer to the [PyTorch website](https://pytorch.org/). FFmpeg should be installed with libx264 support, which can be installed in Anaconda by using <code>conda install x264 ffmpeg -c conda-forge</code>.
+
+### Simple installation process
+- Create a python virtual environment and install the python packages:
+  ```bash
+  pip install -r requirements.txt
+  ```
+- Install FFmpeg
+  ```
+  brew install ffmpeg # for MacOS
+  ```
+
 
 ## Usage
 
@@ -72,7 +91,13 @@ Other options:
 For example:
 
 ```
-python remaster.py --input example/a-bomb_blast_effects_part.mp4 --reference_dir example/references --gpu
+python remaster.py --input example/a-bomb_blast_effects_part.mp4 --reference_dir example/references
+```
+
+### The Docker way
+```
+docker build -t remastering .
+docker run remastering python remaster.py --input example/a-bomb_blast_effects_part.mp4 --reference_dir example/references/
 ```
 
 ### Preparing Reference Images
@@ -84,12 +109,6 @@ To prepare reference color images for your own video, it is recommended to first
 - This is developed on a Linux machine running Ubuntu 18.04 during late 2018.
 - We recommend using GPU with 4GB+ memory for fast computation.
 - Provided model and sample code are under a non-commercial creative commons license.
-
-## Dataset
-
-The list of video URLs used for training the model is available [here](http://iizuka.cs.tsukuba.ac.jp/projects/remastering/data/video_urls.zip) (unfortunately several links are no longer available).
-
-The noise data used for simulating old film degradation is available [here (898MB)](http://iizuka.cs.tsukuba.ac.jp/projects/remastering/data/noise_data.zip).
 
 ## Citing
 
@@ -107,7 +126,3 @@ If you use this code please cite:
   articleno = 176,
 }
 ```
-
-
-
-

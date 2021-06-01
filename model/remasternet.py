@@ -114,7 +114,7 @@ class NetworkC( nn.Module ):
          TempConv( 256, 256 ),
          TempConv( 256, 512, stride=(1,2,2) ),
          TempConv( 512, 512 ),
-         TempConv( 512, 512 )                  
+         TempConv( 512, 512 )
       )
       self.flat = nn.Sequential(
          TempConv( 512, 512 ),
@@ -134,7 +134,7 @@ class NetworkC( nn.Module ):
       self.up2 = nn.Sequential(
          Upsample( 256, 128 ), # 1/4
          TempConv( 128, 64, kernel_size=(3,3,3), stride=(1,1,1), padding=(1,1,1) )
-      )      
+      )
       self.up3 = nn.Sequential(
          Upsample( 64, 32 ), # 1/2
          TempConv( 32, 16, kernel_size=(3,3,3), stride=(1,1,1), padding=(1,1,1) )
@@ -174,7 +174,7 @@ class NetworkC( nn.Module ):
       if x_refs is not None:
          reffeat2 = self.reffeatnet2( reffeat )
          out, _ = self.stattn2( out, reffeat2 )
-      
+
       out = self.conv1( out )
       out, _ = self.selfattn1( out, out )
       out = self.up1( out, x2 )
