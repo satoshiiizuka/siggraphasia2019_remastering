@@ -31,6 +31,8 @@ parser.add_argument('--reference_dir',  type=str, default='none', help='Path to 
 parser.add_argument('--disable_colorization', action='store_true', default=False, help='Remaster without colorization')
 parser.add_argument('--gpu',       action='store_true', default=False, help='Use GPU')
 parser.add_argument('--mindim',     type=int,   default='320',    help='Length of minimum image edges')
+parser.add_argument('--frame_start',   type=int,   default='0',    help='Start frame from where to start process the input video')
+parser.add_argument('--frame_end',     type=int,   default='-1',    help='End frame, does not process frames beyond that, -1=last frame')
 opt = parser.parse_args()
 
 device = torch.device('cuda:0' if opt.gpu else 'cpu')
@@ -92,14 +94,17 @@ if minwh != opt.mindim:
 t_w = round(v_w*scale/16.)*16
 t_h = round(v_h*scale/16.)*16
 fps = cap.get(cv2.CAP_PROP_FPS)
-pbar = tqdm(total=nframes)
 block = 5
+
+if opt.frame_end != -1:
+  nframes = opt.frame_end
+pbar = tqdm(total=nframes-opt.frame_start)
 
 # Process 
 with torch.no_grad():
    it = 0
    while True:
-      frame_pos = it*block
+      frame_pos = opt.frame_start + it*block
       if frame_pos >= nframes:
          break
       cap.set(cv2.CAP_PROP_POS_FRAMES, frame_pos)
@@ -173,9 +178,9 @@ with torch.no_grad():
    
    # Save result videos
    outfile = opt.input.split('/')[-1].split('.')[0]
-   cmd = 'ffmpeg -y -r %d -i %s%%07d.png -vcodec libx264 -pix_fmt yuv420p -r %d %s_in.mp4' % (fps, outputdir_in, fps, outfile )
+   cmd = 'ffmpeg -y -start_number %d -r %s -i %s%%07d.png -vcodec libx264 -pix_fmt yuv420p -r %s %s_in.mp4' % (opt.frame_start, fps, outputdir_in, fps, outfile )
    subprocess.call( cmd, shell=True )
-   cmd = 'ffmpeg -y -r %d -i %s%%07d.png -vcodec libx264 -pix_fmt yuv420p -r %d %s_out.mp4' % (fps, outputdir_out, fps, outfile )
+   cmd = 'ffmpeg -y -start_number %d -r %s -i %s%%07d.png -vcodec libx264 -pix_fmt yuv420p -r %s %s_out.mp4' % (opt.frame_start, fps, outputdir_out, fps, outfile )
    subprocess.call( cmd, shell=True )
    cmd = 'ffmpeg -y -i %s_in.mp4 -vf "[in] pad=2.01*iw:ih [left];movie=%s_out.mp4[right];[left][right] overlay=main_w/2:0,scale=2*iw/2:2*ih/2[out]" %s_comp.mp4' % ( outfile, outfile, outfile )
    subprocess.call( cmd, shell=True )
